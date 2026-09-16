@@ -1,0 +1,66 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: Candidate Factor Document
+type: object
+additionalProperties: true
+required:
+  - name
+  - code
+  - formula_type
+  - category
+  - description
+  - metadata
+properties:
+  name:
+    type: string
+    pattern: "^[A-Za-z][A-Za-z0-9_]*$"
+  code:
+    type: string
+    minLength: 1
+  formula_type:
+    type: string
+    enum:
+      - expression
+      - python
+  category:
+    type: string
+    minLength: 1
+  description:
+    type: string
+    minLength: 1
+  metadata:
+    type: object
+    additionalProperties: true
+    required:
+      - source
+      - generation
+      - lineage
+    properties:
+      source:
+        type: string
+        enum:
+          - initial
+          - mutation
+          - crossover
+          - refinement
+      generation:
+        type: integer
+        minimum: 1
+      lineage:
+        type: object
+        additionalProperties: true
+        required:
+          - parents
+        properties:
+          parents:
+            type: array
+            minItems: 0
+            items:
+              type: object
+              additionalProperties: true
+      operation:
+        type: string
+      reason:
+        type: string
+        minLength: 1
+      research_goal:
+        type: string

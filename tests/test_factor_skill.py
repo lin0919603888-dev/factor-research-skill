@@ -8,6 +8,7 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
+import tempfile
 import unittest
 from typing import Any
 
@@ -59,25 +60,24 @@ def _write_market_csv(path: Path) -> None:
 
 class FactorSkillTests(unittest.TestCase):
     def test_checker_rejects_negative_shift(self) -> None:
-        factor = {
-            "name": "future_factor",
-            "python_code": (
-                "import pandas as pd\n\n"
-                "def future_factor(df: pd.DataFrame) -> pd.Series:\n"
-                "    factor = df['close'].shift(-1)\n"
-                "    factor.name = 'future_factor'\n"
-                "    return factor\n"
-            ),
-        }
-        path = ROOT / ".tmp_future_factor.json"
-        path.write_text(json.dumps(factor), encoding="utf-8")
-        try:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "future_factor.json"
+            factor = {
+                "name": "future_factor",
+                "python_code": (
+                    "import pandas as pd\n\n"
+                    "def future_factor(df: pd.DataFrame) -> pd.Series:\n"
+                    "    factor = df['close'].shift(-1)\n"
+                    "    factor.name = 'future_factor'\n"
+                    "    return factor\n"
+                ),
+            }
+            path.write_text(json.dumps(factor), encoding="utf-8")
             result = _run_python(
                 TOOLS / "factor_checker.py",
                 ["--factor-json", str(path)],
             )
-        finally:
-            path.unlink()
+        self.assertEqual(result["status"], "fail")
         self.assertEqual(result["status"], "fail")
         self.assertEqual(result["checks"]["no_obvious_lookahead"], "fail")
 

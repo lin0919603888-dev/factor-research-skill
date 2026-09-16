@@ -1,0 +1,16 @@
+name: Candidate_Factor_Name
+code: "((close / open) * 1.0)"
+formula_type: expression
+category: custom
+description: "Explain the single mechanism, assumptions, and expected failure mode."
+metadata:
+  source: initial
+  generation: 1
+  lineage:
+    parents: []
+    operation: manual_design
+    reason: "Explain why this candidate is introduced."
+  research_goal: "Copy the current research goal."
+  research_direction: "Copy the current research direction."
+  data_frequency: minute
+  prediction_horizon: 1
