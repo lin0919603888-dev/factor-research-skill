@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "research_hypothesis",
+    "task_type"
+  ],
+  "properties": {
+    "research_hypothesis": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Single, testable research hypothesis."
+    },
+    "task_type": {
+      "type": "string",
+      "enum": [
+        "initial",
+        "mutation",
+        "crossover",
+        "refinement"
+      ]
+    },
+    "frequency": {
+      "type": "string",
+      "enum": [
+        "minute",
+        "daily"
+      ],
+      "default": "minute"
+    },
+    "market_data_path": {
+      "type": "string",
+      "description": "CSV path containing the caller-supplied market data."
+    },
+    "parent_factor": {
+      "type": "object",
+      "description": "Optional parent-factor context for mutation, crossover, or refinement."
+    },
+    "forward_horizon": {
+      "type": "integer",
+      "minimum": 1,
+      "default": 1,
+      "description": "Number of future bars used by the program to construct forward returns."
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}
+

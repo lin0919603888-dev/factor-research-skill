@@ -1,0 +1,8 @@
+{
+  "name": "example_factor_name",
+  "formula": "factor = ...",
+  "research_hypothesis": "State the supplied research hypothesis.",
+  "mechanism_explanation": "Explain the mechanism, assumptions, and main failure mode.",
+  "python_code": "import pandas as pd\n\n\ndef example_factor_name(df: pd.DataFrame) -> pd.Series:\n    factor = ...\n    factor.name = \"example_factor_name\"\n    return factor.astype(float)\n"
+}
+

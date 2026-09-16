@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "formula",
+    "research_hypothesis",
+    "mechanism_explanation",
+    "python_code"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "description": "Python-safe factor name and function name."
+    },
+    "formula": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Concise mathematical or operational definition."
+    },
+    "research_hypothesis": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Hypothesis this factor tests."
+    },
+    "mechanism_explanation": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Financial mechanism, assumptions, and principal risks."
+    },
+    "python_code": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Python source defining one DataFrame-to-Series factor function."
+    }
+  }
+}
+

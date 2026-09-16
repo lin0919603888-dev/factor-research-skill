@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "status",
+    "code_check",
+    "execution",
+    "backtest",
+    "gate",
+    "errors"
+  ],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "reject"
+      ]
+    },
+    "code_check": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "fail",
+        "not_run"
+      ]
+    },
+    "execution": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "fail",
+        "not_run"
+      ]
+    },
+    "backtest": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "IC": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "RankIC": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "ICIR": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      }
+    },
+    "gate": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "reject",
+        "not_run"
+      ]
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
+

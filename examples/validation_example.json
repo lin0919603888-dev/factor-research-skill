@@ -1,0 +1,20 @@
+{
+  "status": "reject",
+  "code_check": "pass",
+  "execution": "pass",
+  "backtest": {
+    "IC": 0.0123,
+    "RankIC": 0.0088,
+    "ICIR": 0.1041,
+    "RankICIR": 0.0875,
+    "total_observations": 120,
+    "valid_observations": 100,
+    "ic_observations": 81,
+    "IC_positive_ratio": 0.531,
+    "method": "rolling_time_series",
+    "rolling_window": 20
+  },
+  "gate": "reject",
+  "errors": []
+}
+

@@ -1,0 +1,8 @@
+{
+  "name": "vwap_deviation_momentum",
+  "formula": "factor = (close / average - 1) * (volume / rolling_mean(volume, 20))",
+  "research_hypothesis": "Volume-expanded price strength relative to the minute average price has short-term continuation.",
+  "mechanism_explanation": "A price premium over average traded price may reflect aggressive buying. Scaling by current volume relative to its recent level gives more weight to volume-supported moves. The mechanism can fail around reversals, stale or extreme prices, thin volume, and structural gaps.",
+  "python_code": "import pandas as pd\n\n\ndef vwap_deviation_momentum(df: pd.DataFrame) -> pd.Series:\n    \"\"\"Measure volume-supported price deviation from minute average price.\"\"\"\n    close = pd.to_numeric(df[\"close\"], errors=\"coerce\")\n    average = pd.to_numeric(df[\"average\"], errors=\"coerce\")\n    volume = pd.to_numeric(df[\"volume\"], errors=\"coerce\")\n    relative_volume = volume / volume.rolling(20, min_periods=1).mean()\n    factor = (close / average - 1.0) * relative_volume\n    factor.name = \"vwap_deviation_momentum\"\n    return factor.astype(float)\n"
+}
+

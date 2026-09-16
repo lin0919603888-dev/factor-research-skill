@@ -1,0 +1,24 @@
+{
+  "name": "factor-research-skill",
+  "version": "0.1.0",
+  "description": "Minimal AI factor research workflow with program-based validation, execution, backtesting, and gating.",
+  "author": "Codex",
+  "entrypoint": "SKILL.md",
+  "input_protocol_version": "1.0",
+  "output_protocol_version": "1.0",
+  "tools": [
+    "tools/factor_checker.py",
+    "tools/factor_executor.py",
+    "tools/backtest_runner.py",
+    "tools/metric_calculator.py",
+    "tools/gate_checker.py"
+  ],
+  "dependencies": {
+    "python": ">=3.10",
+    "packages": [
+      "pandas",
+      "numpy"
+    ]
+  }
+}
+
